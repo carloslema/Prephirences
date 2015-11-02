@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name         = "Prephirences"
-  s.version      = "2.0.2"
+  s.version      = "2.1.0"
   s.summary      = "A Swift library to manage preferences"
   s.description  = <<-DESC
                    Prephirences is a Swift library that provides useful protocols and methods to manage preferences.
@@ -31,6 +31,7 @@ Pod::Spec.new do |s|
 
   s.subspec "Core" do  |sp|
     sp.source_files = "Prephirences/*.swift"
+    sp.dependency 'Arithmosophi'
   end
 
   s.subspec "CoreData" do  |sp|

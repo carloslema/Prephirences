@@ -26,6 +26,7 @@ SOFTWARE.
 */
 
 import Foundation
+import Arithmosophi
 
 /* A preference value extracted from a PreferencesType for a specific key */
 public class Preference<T> {
@@ -200,80 +201,5 @@ public func ^=<T where T: BitwiseOperationsType, T:Initializable>(inout preferen
 }
 public func ~=<T where T: BitwiseOperationsType>(inout preference: MutablePreference<T>, rhs: T) {
     preference.value = ~rhs
-}
-
-
-// MARK: Make type implement protocols
-// TODO extract a math framework which defines this following protocols : see https://github.com/phimage/Arithmosophi
-// OR use IntegerArithmeticType ?
-
-public protocol Initializable {
-    init() // get a zero
-}
-
-public protocol Addable {
-    func + (lhs: Self, rhs: Self) -> Self
-}
-public protocol Substractable {
-    func - (left: Self, right: Self) -> Self
-}
-public protocol Negatable {
-    prefix func - (instance: Self) -> Self
-}
-public protocol Multiplicable {
-    func * (lhs: Self, rhs: Self) -> Self
-}
-public protocol Dividable {
-    func / (left: Self, right: Self) -> Self
-}
-public protocol Modulable {
-    func % (left: Self, right: Self) -> Self
-}
-
-extension String: Initializable, Addable {}
-extension Array: Initializable, Addable {}
-extension Int: Initializable, Addable, Negatable, Substractable, Multiplicable, Dividable, Modulable {}
-extension Float: Initializable, Addable, Negatable, Substractable, Multiplicable, Dividable, Modulable {}
-extension Double: Initializable, Addable, Negatable, Substractable, Multiplicable, Dividable, Modulable {}
-extension UInt8: Addable, Substractable, Multiplicable, Dividable, Modulable {}
-extension Int8: Initializable, Addable, Negatable, Substractable, Multiplicable, Dividable, Modulable {}
-extension UInt16: Addable, Substractable, Multiplicable, Dividable, Modulable {}
-extension Int16: Initializable, Addable, Negatable, Substractable, Multiplicable, Dividable, Modulable {}
-extension UInt32: Addable, Substractable, Multiplicable, Dividable, Modulable {}
-extension Int32: Initializable, Addable, Negatable, Substractable, Multiplicable, Dividable, Modulable {}
-extension UInt64: Addable, Substractable, Multiplicable, Dividable, Modulable {}
-extension Int64: Initializable, Addable, Negatable, Substractable, Multiplicable, Dividable, Modulable {}
-extension UInt: Addable, Substractable, Multiplicable, Dividable, Modulable{}
-
-#if os(iOS) || os(watchOS) || os(tvOS)
-import UIKit // import CoreGraphics
-#endif
-extension CoreGraphics.CGFloat: Initializable, Addable, Negatable, Substractable, Multiplicable, Dividable, Modulable {}
-    
-public protocol LogicalOperationsType {
-    
-    func && (left: Self, @autoclosure right:  () throws -> Self) rethrows -> Self // AND
-    func || (left: Self, @autoclosure right:  () throws -> Self) rethrows -> Self // OR
-    prefix func ! (left: Self) -> Self // NOT
-}
-
-//@rethrows public func ||<T : BooleanType>(lhs: T, @autoclosure rhs: () throws -> Bool) rethrows -> Bool
-
-extension Bool: Initializable, LogicalOperationsType {}
-
-// MARK: -Sum
-
-prefix operator ∑ {}
-
-public prefix func ∑<T where T:Addable, T:Initializable>(input: [T]) -> T {
-    return sumOf(input)
-}
-
-public func sumOf<T where T: Addable, T:Initializable>(input : T...) -> T {
-    return sumOf(input)
-}
-
-public func sumOf<T where T:Addable, T:Initializable>(input : [T]) -> T {
-    return input.reduce(T()) {$0 + $1}
 }
 

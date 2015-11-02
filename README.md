@@ -178,7 +178,7 @@ keychain.accessibility = .AccessibleAfterFirstUnlock
 ```swift
 keychain.accessGroup = "AKEY.shared"
 ```
- 
+
 
 
 
@@ -213,7 +213,7 @@ You can access or modify this composite preferences like any PreferencesType.
 The main goal is to define read-only preferences for your app (in code or files) and some mutable preferences (like `NSUserDefaults`, `NSUbiquitousKeyValueStore`). You can then access to one preference value without care about the origin
 
 ## Managing preferences instances ##
-If you want to use Prephirences into a framework or want to get a `Preferences` without adding dependencies between classes, you can register any `PreferencesType` into `Prephirences` 
+If you want to use Prephirences into a framework or want to get a `Preferences` without adding dependencies between classes, you can register any `PreferencesType` into `Prephirences`
 
 as shared instance
 ```swift
@@ -240,17 +240,12 @@ If you use [Alamofire](https://github.com/Alamofire/Alamofire), [Alamofire-Preph
 
 ## Using [cocoapods](http://cocoapods.org/) ##
 
-Add `pod 'Prephirences'` to your `Podfile` and run `pod install`. 
+Add `pod 'Prephirences'` to your `Podfile` and run `pod install`.
 
 *Add `use_frameworks!` to the end of the `Podfile`.*
 
 ### For core data ###
 Add `pod 'Prephirences/CoreData'`
-
-## Using xcode project ##
-
-1. Drag Prephirences.xcodeproj to your project/workspace or open it to compile it
-2. Add the Prephirences framework to your project
 
 # Logo #
 By [kodlian](http://www.kodlian.com/)

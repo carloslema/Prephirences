@@ -111,6 +111,7 @@
 		C42115011AE7D8E200A09DD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C42115021AE7D8E200A09DD9 /* PrephirencesMacOSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrephirencesMacOSX.h; sourceTree = "<group>"; };
 		C421151B1AE7D97900A09DD9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C429B82C1C1997E400518FEF /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		C45D31391AE929D40034D1E3 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		C45D313A1AE929DD0034D1E3 /* Prephirences.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Prephirences.podspec; sourceTree = "<group>"; };
 		C477D9D71C03237F00486C13 /* ReflectingPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectingPreferences.swift; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 				C42114FF1AE7D8E200A09DD9 /* PrephirencesMacOSX */,
 				C45D313B1AE929F10034D1E3 /* Resources */,
 				C4FF650C1B6B7C7300BFE4F4 /* PrephirencesTests */,
+				C429B82A1C19969A00518FEF /* SwiftPackageManager */,
 				C42114B11AE7D0CB00A09DD9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -271,6 +273,14 @@
 				C42115011AE7D8E200A09DD9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C429B82A1C19969A00518FEF /* SwiftPackageManager */ = {
+			isa = PBXGroup;
+			children = (
+				C429B82C1C1997E400518FEF /* Package.swift */,
+			);
+			path = SwiftPackageManager;
 			sourceTree = "<group>";
 		};
 		C45D313B1AE929F10034D1E3 /* Resources */ = {

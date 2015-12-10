@@ -25,7 +25,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+#if !os(Linux)
 import Foundation
+#endif
 
 public protocol PreferencesType {
     func objectForKey(key: String) -> AnyObject?
@@ -34,18 +36,21 @@ public protocol PreferencesType {
     // optional methods
     subscript(key: String) -> AnyObject? {get}
     func hasObjectForKey(key: String) -> Bool
-    
-    
+
     func stringForKey(key: String) -> String?
     func arrayForKey(key: String) -> [AnyObject]?
     func dictionaryForKey(key: String) -> [String : AnyObject]?
-    func dataForKey(key: String) -> NSData?
+
     func stringArrayForKey(key: String) -> [String]?
     func integerForKey(key: String) -> Int
     func floatForKey(key: String) -> Float
     func doubleForKey(key: String) -> Double
     func boolForKey(key: String) -> Bool
+
+    #if !os(Linux) // Foundation
     func URLForKey(key: String) -> NSURL?
+    func dataForKey(key: String) -> NSData?
+    #endif
 
     func unarchiveObjectForKey(key: String) -> AnyObject?
     func preferenceForKey<T>(key: String) -> Preference<T>
@@ -63,7 +68,10 @@ public protocol MutablePreferencesType: PreferencesType {
     func setFloat(value: Float, forKey key: String)
     func setDouble(value: Double, forKey key: String)
     func setBool(value: Bool, forKey key: String)
+
+    #if !os(Linux)
     func setURL(url: NSURL?, forKey key: String)
+    #endif
 
     func setObjectToArchive(value: AnyObject?, forKey key: String)
     
@@ -94,9 +102,7 @@ public extension PreferencesType {
     public func dictionaryForKey(key: String) -> [String : AnyObject]? {
         return self.objectForKey(key) as? [String : AnyObject]
     }
-    public func dataForKey(key: String) -> NSData? {
-        return self.objectForKey(key) as? NSData
-    }
+
     public func stringArrayForKey(key: String) -> [String]? {
         return self.objectForKey(key) as? [String]
     }
@@ -112,10 +118,15 @@ public extension PreferencesType {
     public func boolForKey(key: String) -> Bool {
         return self.objectForKey(key) as? Bool ?? false
     }
+
+    #if !os(Linux)
+    public func dataForKey(key: String) -> NSData? {
+        return self.objectForKey(key) as? NSData
+    }
     public func URLForKey(key: String) -> NSURL? {
         return self.objectForKey(key) as? NSURL
     }
-    
+    #endif
 
     public func unarchiveObjectForKey(key: String) -> AnyObject? {
         return Prephirences.unarchiveObject(self, forKey: key)
@@ -203,7 +214,7 @@ public extension PreferencesType {
         case .Archive :
             return unarchiveObjectForKey(key)
         case .ValueTransformer(let valueTransformer) :
-            return self["key", valueTransformer]
+             return self["key", valueTransformer]
         case .ClosureTuple(let (_, revert)) :
             return revert(objectForKey(key))
         case .None :

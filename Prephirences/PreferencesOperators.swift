@@ -25,8 +25,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
-
 // MARK: modify
 // add
 public func += <L:MutablePreferencesType, R:PreferencesType> (inout left: L, right: R) {

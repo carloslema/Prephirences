@@ -127,9 +127,7 @@ public class DictionaryPreferences: PreferencesType, SequenceType, DictionaryLit
     public func dictionaryForKey(key: String) -> [String : AnyObject]? {
         return dico[key] as? [String: AnyObject]
     }
-    public func dataForKey(key: String) -> NSData? {
-        return dico[key] as? NSData
-    }
+
     public func stringArrayForKey(key: String) -> [String]? {
         return self.arrayForKey(key) as? [String]
     }
@@ -145,9 +143,14 @@ public class DictionaryPreferences: PreferencesType, SequenceType, DictionaryLit
     public func boolForKey(key: String) -> Bool {
         return dico[key] as? Bool ?? false
     }
+    #if !os(Linux)
+    public func dataForKey(key: String) -> NSData? {
+        return dico[key] as? NSData
+    }
     public func URLForKey(key: String) -> NSURL? {
         return dico[key] as? NSURL
     }
+    #endif
 
     public func dictionary() -> [String : AnyObject] {
         return self.dico
@@ -191,9 +194,11 @@ public class MutableDictionaryPreferences: DictionaryPreferences, MutablePrefere
     public func setBool(value: Bool, forKey key: String) {
         dico[key] = value
     }
+    #if !os(Linux)
     public func setURL(url: NSURL?, forKey key: String) {
         dico[key] = url
     }
+    #endif
     
     public func setObjectsForKeysWithDictionary(dictionary: [String:AnyObject]) {
          dico += dictionary

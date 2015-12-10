@@ -111,11 +111,13 @@ public class Plist: MutableDictionaryPreferences {
         super.setBool(value, forKey: key)
         notifyChange()
     }
+    #if !os(Linux)
     public override func setURL(url: NSURL?, forKey key: String) {
         super.setURL(url, forKey: key)
         notifyChange()
     }
-    
+    #endif
+
     public override func setObjectsForKeysWithDictionary(dictionary: [String:AnyObject]) {
         super.setObjectsForKeysWithDictionary(dictionary)
         notifyChange()

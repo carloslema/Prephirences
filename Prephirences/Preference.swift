@@ -25,7 +25,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Foundation
 
 /* A preference value extracted from a PreferencesType for a specific key */
 public class Preference<T> {
